@@ -48,7 +48,7 @@ function writeLogFileForIp(ip)
     var unixTimeStamp = moment().unix();
     var line = ip.concat('::').concat(unixTimeStamp).concat('::').concat(randomStringGen(256));
 
-    var fileName = path.normalize("tmp/".concat((fileindex++).toString()));
+    var fileName = path.join("tmp",(fileindex++).toString());
     console.log(fileName);
     var result="";
     writeFile(fileName, line, 'utf-8').then(function(err) {
