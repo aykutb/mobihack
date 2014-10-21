@@ -1,7 +1,7 @@
 mobihack
 ========
 
-This project is a rating project for Mobilike and developed by Aykut Bal.
+This project is a rating project for Mobilike job application and developed by Aykut Bal.
 
 ## Installation
 
