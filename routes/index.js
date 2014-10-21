@@ -2,6 +2,7 @@ var express = require('express');
 var fs = require('fs');
 var moment = require('moment');
 var crypto = require('crypto');
+var path = require('path');
 var Q =require('q');
 var router = express.Router();
 
@@ -46,7 +47,9 @@ function writeLogFileForIp(ip)
     var deferred = Q.defer();
     var unixTimeStamp = moment().unix();
     var line = ip.concat('::').concat(unixTimeStamp).concat('::').concat(randomStringGen(256));
-    var fileName = "\\tmp\\".concat((fileindex++).toString());
+
+    var fileName = path.normalize("tmp/".concat((fileindex++).toString()));
+    console.log(fileName);
     var result="";
     writeFile(fileName, line, 'utf-8').then(function(err) {
         if(err)
