@@ -1,13 +1,8 @@
 var express = require('express');
 var path = require('path');
-var logger = require('morgan');
 var routes = require('./routes/index');
 require('newrelic');
 var app = express();
-
-
-app.use(logger('dev'));
-
 app.use('/', routes);
 
 // catch 404 and forward to error handler
