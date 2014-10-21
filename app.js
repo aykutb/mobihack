@@ -1,7 +1,7 @@
 var express = require('express');
 var path = require('path');
 var routes = require('./routes/index');
-require('newrelic');
+require('newrelic'); // newrelic is a performance monitoring tool, this is integration call
 var app = express();
 app.use('/', routes);
 

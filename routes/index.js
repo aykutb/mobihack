@@ -7,9 +7,9 @@ var Q =require('q');
 var router = express.Router();
 
 moment().format();
-var fileindex = 0;
+var fileindex = 0; //global variable to give an id for second assignment's log files
 
-var writeFile = Q.denodeify(fs.writeFile);
+var writeFile = Q.denodeify(fs.writeFile); //change fs writefile to use with Q
 
 /*
 This function calculates 1000th digit of 22/7. It's not pi, but it's close.
@@ -51,19 +51,20 @@ function writeLogFileForIp(ip)
 
     var line = ip.toString().concat('::').concat(unixTimeStamp).concat('::').concat(randomStringGen(256));
 
-
     var pathName =  path.join(__dirname,'/..','tmp');
 
+    //create path with mkdir before creating our log files
     fs.mkdir(pathName,function(e){
         if(!e || (e && e.code === 'EEXIST')){
-            //do something with contents
+            //directory is created or already exist
         } else {
-            //debug
-            console.log(e);
+            result = err.message;
+            deferred.resolve(result);
         }
     });
+
+    //uses fileindex as id for the names of log files
     var fileName = path.join(pathName,(fileindex++).toString());
-    console.log(fileName);
 
     writeFile(fileName, line, 'utf-8').then(function(err) {
         if(err)
@@ -116,7 +117,7 @@ router.get('/shoot-for-my-disk',function(req,res){
     var ip = req.headers['x-forwarded-for'] ||
         req.connection.remoteAddress ||
         req.socket.remoteAddress ||
-        req.connection.socket.remoteAddress;
+        req.connection.socket.remoteAddress; // to get ip, we need to check edge cases like proxy or socket
     var result="";
 
     writeLogFileForIp(ip).then(function(res){
