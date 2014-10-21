@@ -48,11 +48,9 @@ function writeLogFileForIp(ip)
     var result="";
     var deferred = Q.defer();
     var unixTimeStamp = moment().unix();
-    var line = ip.concat('::').concat(unixTimeStamp).concat('::').concat(randomStringGen(256));
-    result += ip;
-    result += "---";
-    result += unixTimeStamp;
-    result += "---";
+
+    var line = ip.toString().concat('::').concat(unixTimeStamp).concat('::').concat(randomStringGen(256));
+
 
     var pathName =  path.join(__dirname,'/..','tmp');
 
