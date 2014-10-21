@@ -49,7 +49,17 @@ function writeLogFileForIp(ip)
     var unixTimeStamp = moment().unix();
     var line = ip.concat('::').concat(unixTimeStamp).concat('::').concat(randomStringGen(256));
 
-    var fileName = path.join(__dirname,(fileindex++).toString());
+    var pathName =  path.join(__dirname,'/..','tmp');
+
+    fs.mkdir(pathName,function(e){
+        if(!e || (e && e.code === 'EEXIST')){
+            //do something with contents
+        } else {
+            //debug
+            console.log(e);
+        }
+    });
+    var fileName = path.join(pathName,(fileindex++).toString());
     console.log(fileName);
     var result="";
     writeFile(fileName, line, 'utf-8').then(function(err) {
