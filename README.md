@@ -30,4 +30,5 @@ Do not use an utility/helper library for log operations.
 `mobihack` is a restful api and practicising exercise to ramp up with nodejs. It has two functions; 'shoot-for-my-cpu' and 'shoot-for-my-disk'. There is already deployed version of `mobihack` on Azure platform, you can check the functions by calling HTTP requests on:
   - http://mobilhack.azurewebsites.net/shoot-for-my-cpu
   - http://mobilhack.azurewebsites.net/shoot-for-my-disk
+
 PS. It's deployed on Small machine configuration on Azure ( 1 core-1.75GB Memory)
