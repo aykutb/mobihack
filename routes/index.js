@@ -113,7 +113,10 @@ router.get('/shoot-for-my-cpu', function(req, res) {
 GET Second Assignment
  */
 router.get('/shoot-for-my-disk',function(req,res){
-    var ip = req.connection.remoteAddress;
+    var ip = req.headers['x-forwarded-for'] ||
+        req.connection.remoteAddress ||
+        req.socket.remoteAddress ||
+        req.connection.socket.remoteAddress;
     var result="";
 
     writeLogFileForIp(ip).then(function(res){
