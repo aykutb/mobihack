@@ -10,6 +10,7 @@ moment().format();
 var fileindex = 0;
 
 var writeFile = Q.denodeify(fs.writeFile);
+
 /*
 This function calculates 1000th digit of 22/7. It's not pi, but it's close.
 Eventually, calculation of pi is a whole different story.
@@ -48,7 +49,7 @@ function writeLogFileForIp(ip)
     var unixTimeStamp = moment().unix();
     var line = ip.concat('::').concat(unixTimeStamp).concat('::').concat(randomStringGen(256));
 
-    var fileName = path.join("tmp",(fileindex++).toString());
+    var fileName = path.join(__dirname,(fileindex++).toString());
     console.log(fileName);
     var result="";
     writeFile(fileName, line, 'utf-8').then(function(err) {
