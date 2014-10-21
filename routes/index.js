@@ -45,9 +45,14 @@ Algorithm:
  */
 function writeLogFileForIp(ip)
 {
+    var result="";
     var deferred = Q.defer();
     var unixTimeStamp = moment().unix();
     var line = ip.concat('::').concat(unixTimeStamp).concat('::').concat(randomStringGen(256));
+    result += ip;
+    result += "---";
+    result += unixTimeStamp;
+    result += "---";
 
     var pathName =  path.join(__dirname,'/..','tmp');
 
@@ -61,16 +66,16 @@ function writeLogFileForIp(ip)
     });
     var fileName = path.join(pathName,(fileindex++).toString());
     console.log(fileName);
-    var result="";
+
     writeFile(fileName, line, 'utf-8').then(function(err) {
         if(err)
         {
-            result = err.message;
+            result += err.message;
             deferred.resolve(result);
         }
         else
         {
-            result = 0;
+            result += 0;
             deferred.resolve(result);
         }
     });
