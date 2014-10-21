@@ -68,12 +68,12 @@ function writeLogFileForIp(ip)
     writeFile(fileName, line, 'utf-8').then(function(err) {
         if(err)
         {
-            result += err.message;
+            result = err.message;
             deferred.resolve(result);
         }
         else
         {
-            result += 0;
+            result = 0;
             deferred.resolve(result);
         }
     });
